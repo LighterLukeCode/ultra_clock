@@ -1,13 +1,13 @@
-import React from "react";
-import "./clock.css";
+import * as React from 'react';
+import './clock.css';
 
 const Clock = () => {
-  const [seconds, setSeconds] = React.useState("");
-  const [minutes, setMinutes] = React.useState("");
-  const [hours, setHours] = React.useState("");
+  const [seconds, setSeconds] = React.useState('');
+  const [minutes, setMinutes] = React.useState('');
+  const [hours, setHours] = React.useState('');
 
   const getTime = async () => {
-    const response = await fetch("http://worldtimeapi.org/api/ip");
+    const response = await fetch('https://worldtimeapi.org/api/ip');
     const data = await response.json();
     const date = new Date(data.datetime);
 
@@ -18,7 +18,6 @@ const Clock = () => {
     setHours(`rotateZ(${hh + mm / 12}deg)`);
     setMinutes(`rotateZ(${mm}deg)`);
     setSeconds(`rotateZ(${ss}deg)`);
-    console.log(seconds, hours, minutes);
   };
 
   React.useEffect(() => {
@@ -29,7 +28,7 @@ const Clock = () => {
   }, []);
 
   return (
-    <>
+    <React.Fragment>
       <div className="half__circle"></div>
       <div className="clock__circle">
         <span className="clock__twelve"></span>
@@ -42,7 +41,7 @@ const Clock = () => {
         <div className="clock__seconds" style={{ transform: seconds }}></div>
       </div>
       <div className="half__circle"></div>
-    </>
+    </React.Fragment>
   );
 };
 
